@@ -148,30 +148,6 @@ class DashboardPage(PageObject):
         else:
             return None
 
-<<<<<<< HEAD
-=======
-    def change_language(self, code):
-        """
-        Change the language on the dashboard to the language corresponding with `code`.
-        """
-        self.q(css=".edit-language").first.click()
-        self.q(css='select[name="language"] option[value="{}"]'.format(code)).first.click()
-        self.q(css="#submit-lang").first.click()
-
-        # Clicking the submit-lang button does a jquery ajax post, so make sure that
-        # has completed before continuing on.
-        self.wait_for_ajax()
-
-        self._changed_lang_promise(code).fulfill()
-
-    def _changed_lang_promise(self, code):
-        def _check_func():
-            language_is_selected = self.q(css='select[name="language"] option[value="{}"]'.format(code)).selected
-            modal_is_visible = self.q(css='section#change_language.modal').visible
-            return (language_is_selected and not modal_is_visible)
-        return EmptyPromise(_check_func, "language changed and modal hidden")
-
->>>>>>> fix failing tests #5
     def pre_requisite_message_displayed(self):
         """
         Verify if pre-requisite course messages are being displayed.
