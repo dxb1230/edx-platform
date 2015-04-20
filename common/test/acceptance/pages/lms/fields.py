@@ -5,6 +5,7 @@ Mixins for fields.
 from bok_choy.promise import EmptyPromise
 
 from ...tests.helpers import get_selected_option_text, select_option_by_text
+from selenium.webdriver import ActionChains
 
 
 class FieldsMixin(object):
@@ -121,6 +122,10 @@ class FieldsMixin(object):
             return None
 
         field_classes = query.attrs('class')[0].split()
+
+        # Hover to the particular field.
+        element = self.browser.find_element_by_css_selector('.u-field-{}'.format(field_id))
+        ActionChains(self.browser).move_to_element(element).perform()
 
         if 'mode-placeholder' in field_classes or 'mode-display' in field_classes:
             if field_id == 'bio':
