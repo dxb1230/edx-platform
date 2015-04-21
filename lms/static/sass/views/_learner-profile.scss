@@ -94,7 +94,7 @@
                 }
             }
 
-            &:hover {
+            &:hover, &:focus {
                 .u-field-upload-button, .u-field-remove-button {
                     opacity: 1;
                     background-color: $shadow-d2;

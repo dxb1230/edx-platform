@@ -71,12 +71,12 @@
             var sectionOneFieldViews = [
                 new FieldsView.DropdownFieldView({
                     model: accountSettingsModel,
-                    screenReaderTitle: gettext('Location'),
+                    screenReaderTitle: gettext('Country'),
                     required: true,
                     editable: editable,
                     showMessages: false,
                     iconName: 'fa-map-marker',
-                    placeholderValue: '',
+                    placeholderValue: gettext('Add Country'),
                     valueAttribute: "country",
                     options: options.country_options,
                     helpMessage: ''

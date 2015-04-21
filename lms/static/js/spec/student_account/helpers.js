@@ -19,7 +19,7 @@ define(['underscore'], function(_) {
         gender: '',
         year_of_birth: '3',    // Note: test birth year range is a string from 0-3
         requires_parental_consent: false,
-        country: '',
+        country: '1',
         language: '',
         bio: "About the student",
         language_proficiencies: [{code: '1'}],

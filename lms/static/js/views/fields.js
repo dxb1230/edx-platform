@@ -176,15 +176,18 @@
                 this.showSuccessMessage();
             },
 
-            showDisplayMode: function(render) {
-                this.mode = 'display';
-                if (render) { this.render(); }
-
+            updateDisplayModeClass: function() {
                 this.$el.removeClass('mode-edit');
 
                 this.$el.toggleClass('mode-hidden', (this.editable === 'never' && !this.modelValueIsSet()));
                 this.$el.toggleClass('mode-placeholder', (this.editable === 'toggle' && !this.modelValueIsSet()));
                 this.$el.toggleClass('mode-display', (this.modelValueIsSet()));
+            },
+
+            showDisplayMode: function(render) {
+                this.mode = 'display';
+                if (render) { this.render(); }
+                this.updateDisplayModeClass();
             },
 
             showEditMode: function(render) {
@@ -359,16 +362,17 @@
             },
 
             updateValueInField: function () {
+                this.$('.u-field-value select').val(this.modelValue() || '');
+
+                var value = this.displayValue(this.modelValue() || '');
+                if (this.modelValueIsSet() === false) {
+                    value = this.options.placeholderValue || '';
+                }
+                this.$('.u-field-value').attr('aria-label', this.options.title);
+                this.$('.u-field-value-readonly').html(Mustache.escapeHtml(value));
+
                 if (this.mode === 'display') {
-                    var value = this.displayValue(this.modelValue() || '');
-                    if (this.modelValueIsSet() === false) {
-                        value = this.options.placeholderValue || '';
-                    }
-                    this.$('.u-field-value').attr('aria-label', this.options.title);
-                    this.$('.u-field-value-readonly').html(Mustache.escapeHtml(value));
-                    this.showDisplayMode(false);
-                } else {
-                    this.$('.u-field-value select').val(this.modelValue() || '');
+                    this.updateDisplayModeClass();
                 }
             },
 

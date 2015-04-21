@@ -17,7 +17,7 @@
             <option value="<%- selectOption[0] %>"><%- selectOption[1] %></option>
         <% }); %>
     </select>
-    <a href="#">
+    <a href="#" class="u-field-value-display">
         <span class="sr"><%- screenReaderTitle %></span>
         <span class="u-field-value-readonly"></span>
         <span class="sr"><%- gettext('Click to edit') %></span>
